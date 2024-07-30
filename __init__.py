@@ -1,16 +1,16 @@
 import bpy
 from .common import *
-from .MainPanel import MainPanel
-from .OptionPanel import OptionPanel
-from .SaveBoneSelectionInArmatureOperator import SaveBoneSelectionInArmatureOperator
-from .MergeBoneWeightToParentOperator import MergeBoneWeightToParentOperator
-from .WeightAutoCleanupOperator import WeightAutoCleanupOperator
+from .Panels.Main import MainPanel
+from .Panels.Option import OptionPanel
+from .Operators.MergeBoneWeightToParent import MergeBoneWeightToParentOperator
+from .Operators.SaveBoneSelectionInArmature import SaveBoneSelectionInArmatureOperator
+from .Operators.WeightAutoCleanup import WeightAutoCleanupOperator
 
 # アドオンに関する情報
 bl_info = {
     "name": "Bone Merger",
     "author": "神代アオイ (Aoi Kamishiro)",
-    "version": (1, 1, 0),
+    "version": (1, 1, 1),
     "blender": (3, 6, 0),
     "location": "View3D > Tools ",
     "description": "Merge bone weight to parent bone.",

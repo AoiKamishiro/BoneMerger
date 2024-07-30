@@ -1,5 +1,5 @@
 import bpy
-from .common import *
+from ..common import *
 
 
 class SaveBoneSelectionInArmatureOperator(bpy.types.Operator):

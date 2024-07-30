@@ -1,5 +1,5 @@
 import bpy
-from .common import *
+from ..common import *
 
 
 class MergeBoneWeightToParentOperator(bpy.types.Operator):

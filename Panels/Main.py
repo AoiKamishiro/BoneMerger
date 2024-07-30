@@ -1,8 +1,8 @@
 import bpy
-from .common import *
-from .PanelBase import PanelBase
-from .SaveBoneSelectionInArmatureOperator import SaveBoneSelectionInArmatureOperator
-from .MergeBoneWeightToParentOperator import MergeBoneWeightToParentOperator
+from ..common import *
+from ..Bases.Panel import PanelBase
+from ..Operators.MergeBoneWeightToParent import MergeBoneWeightToParentOperator
+from ..Operators.SaveBoneSelectionInArmature import SaveBoneSelectionInArmatureOperator
 
 
 class MainPanel(PanelBase):

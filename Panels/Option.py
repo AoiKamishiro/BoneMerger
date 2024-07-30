@@ -1,7 +1,7 @@
 import bpy
-from .common import *
-from .PanelBase import PanelBase
-from .WeightAutoCleanupOperator import WeightAutoCleanupOperator
+from ..common import *
+from ..Bases.Panel import PanelBase
+from ..Operators.WeightAutoCleanup import WeightAutoCleanupOperator
 
 
 class OptionPanel(PanelBase):
