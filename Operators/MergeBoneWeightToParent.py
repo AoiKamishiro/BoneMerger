@@ -28,6 +28,13 @@ class MergeBoneWeightToParentOperator(bpy.types.Operator):
         if arm is None or arm.type != type_armature:
             log(msg_not_armature)
             return op_result_cancelled
+        
+        # アーマチュアをアクティブにして、非表示状態を取得
+        bpy.context.view_layer.objects.active = arm
+        arm_isHide: bool = bpy.context.view_layer.objects.active.hide_get()
+        
+        # アーマチュアを表示
+        bpy.context.view_layer.objects.active.hide_set(False)
 
         armature = cast_to_armature(arm.data)
 
@@ -105,6 +112,9 @@ class MergeBoneWeightToParentOperator(bpy.types.Operator):
         # オブジェクトモードに変更
         bpy.context.view_layer.objects.active = arm
         bpy.ops.object.mode_set(mode=mode_object)
+        
+        # アーマチュアの非表示状態を元に戻す
+        bpy.context.view_layer.objects.active.hide_set(arm_isHide)
 
         return op_result_finished
 
