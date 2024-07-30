@@ -10,7 +10,7 @@ from .Operators.WeightAutoCleanup import WeightAutoCleanupOperator
 bl_info = {
     "name": "Bone Merger",
     "author": "神代アオイ (Aoi Kamishiro)",
-    "version": (1, 1, 1),
+    "version": (1, 1, 2),
     "blender": (3, 6, 0),
     "location": "View3D > Tools ",
     "description": "Merge bone weight to parent bone.",
