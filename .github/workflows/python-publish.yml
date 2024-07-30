@@ -18,7 +18,7 @@ jobs:
 
     - name: Create ZIP of .py files
       run: |
-        zip -r BoneMerger_${{ github.ref_name }}.zip *.py
+        find . -name "*.py" | zip -@ BoneMerger_${{ github.ref_name }}.zip
 
     - name: Create Release
       id: create_release
