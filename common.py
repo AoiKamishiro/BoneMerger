@@ -3,10 +3,17 @@ import bpy
 # region: 定数
 dict_key_target_bones = "BoneMerger.TargetBone"
 type_armature = 'ARMATURE'
+type_mesh = 'MESH'
 mode_edit_armature = 'EDIT_ARMATURE'
 mode_edit = 'EDIT'
 mode_pose = 'POSE'
 mode_object = 'OBJECT'
+mode_weight_paint = 'WEIGHT_PAINT'
+op_result_cancelled = {'CANCELLED'}
+op_result_finished = {'FINISHED'}
+icon_tria_down = 'TRIA_DOWN'
+icon_tria_right = 'TRIA_RIGHT'
+prop_show_target_bones = "bone_merger__show_target_bones"
 msg_not_armature = "アーマチュアが選択されていません。"
 # endregion
 
@@ -36,20 +43,47 @@ def cast_to_mesh(data: bpy.types.ID) -> bpy.types.Mesh:
 
 def cast_to_vertex_weight_mix(modifier: bpy.types.Modifier) -> bpy.types.VertexWeightMixModifier:
     """モディファイアを頂点ウェイト合成モディファイアにキャスト"""
-    d = modifier if isinstance(modifier, bpy.types.VertexWeightMixModifier) else None
+    m = modifier if isinstance(modifier, bpy.types.VertexWeightMixModifier) else None
 
-    if d is None:
+    if m is None:
         raise TypeError(f"Invalid type: {modifier}")
 
-    return d
+    return m
 # endregion
+
+
+def log(msg: str) -> None:
+    """ログを出力"""
+
+    print("[Bone Merger] "+msg)
 
 
 def get_armature_object(object: bpy.types.Object) -> bpy.types.Object | None:
     """
     自身がアーマチュアであれば自身を、そうでない場合は再帰的に親がアーマチュアになるまで探索する
     """
+
     obj = object
     while obj is not None and obj.type != type_armature:
         obj = obj.parent
     return obj
+
+
+def find_objects_by_parent(object: bpy.types.Object) -> list[bpy.types.Object]:
+    """
+    指定したオブジェクトの子オブジェクトを再帰的に取得する
+    """
+
+    objects = []
+    for obj in object.children:
+        objects.append(obj)
+        objects.extend(find_objects_by_parent(obj))
+    return objects
+
+
+def get_bone_depth(bone: bpy.types.Bone) -> int:
+    """
+    ボーンの階層を再帰的に調査する
+    """
+
+    return get_bone_depth(bone.parent) + 1 if bone.parent else 0

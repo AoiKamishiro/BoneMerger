@@ -15,21 +15,21 @@ class SaveBoneSelectionInArmatureOperator(bpy.types.Operator):
 
         # context.active_object が None であれば中止
         if context.active_object is None:
-            print(msg_not_armature)
-            return {'CANCELLED'}
+            log(msg_not_armature)
+            return op_result_cancelled
 
         # アーマチュアを取得
         arm = get_armature_object(context.active_object)
 
         # 選択中のオブジェクトの型チェック
         if arm is None or arm.type != type_armature:
-            print("The selected object is not an armature.")
-            return {'CANCELLED'}
+            log("The selected object is not an armature.")
+            return op_result_cancelled
 
         # 現在のモードが ポーズモード か アーマチュア編集モード でなければ中止
         if context.mode not in {mode_edit_armature, mode_pose}:
-            print("The current mode is not POSE or EDIT_ARMATURE.")
-            return {'CANCELLED'}
+            log("The current mode is not POSE or EDIT_ARMATURE.")
+            return op_result_cancelled
 
         # 選択されているボーンを取得
         if context.mode == mode_edit_armature:
@@ -38,12 +38,12 @@ class SaveBoneSelectionInArmatureOperator(bpy.types.Operator):
             bones: list[str] = [bone.name for bone in context.selected_pose_bones]
 
         # 選択されているボーンを保存
-        print("Selected bones:")
+        log("Selected bones:")
         for bone in bones:
-            print(f"  {bone}")
+            log(f"  {bone}")
         arm[dict_key_target_bones] = bones
 
-        return {'FINISHED'}
+        return op_result_finished
 
     def invoke(self, context: bpy.types.Context, event: bpy.types.Event) -> set:
         """メニューから呼び出された際の処理"""

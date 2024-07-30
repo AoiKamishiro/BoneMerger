@@ -1,13 +1,16 @@
 import bpy
+from .common import *
 from .MainPanel import MainPanel
+from .OptionPanel import OptionPanel
 from .SaveBoneSelectionInArmatureOperator import SaveBoneSelectionInArmatureOperator
 from .MergeBoneWeightToParentOperator import MergeBoneWeightToParentOperator
+from .WeightAutoCleanupOperator import WeightAutoCleanupOperator
 
 # アドオンに関する情報
 bl_info = {
     "name": "Bone Merger",
     "author": "神代アオイ (Aoi Kamishiro)",
-    "version": (1, 0),
+    "version": (1, 1, 0),
     "blender": (3, 6, 0),
     "location": "View3D > Tools ",
     "description": "Merge bone weight to parent bone.",
@@ -22,8 +25,10 @@ bl_info = {
 # Blenderに登録するクラス
 classes = [
     MainPanel,
+    OptionPanel,
     SaveBoneSelectionInArmatureOperator,
     MergeBoneWeightToParentOperator,
+    WeightAutoCleanupOperator,
 ]
 
 
@@ -35,7 +40,9 @@ def register() -> None:
     for c in classes:
         bpy.utils.register_class(c)
 
-    print("BoneMerger has been enabled.")
+    bpy.types.Scene.bone_merger__show_target_bones = bpy.props.BoolProperty(name="対象ボーン", default=False)  # type: ignore
+
+    log("addon enabled.")
 
 
 def unregister() -> None:
@@ -46,7 +53,7 @@ def unregister() -> None:
     for c in classes:
         bpy.utils.unregister_class(c)
 
-    print("Addon BoneMerger has been disabled.")
+    log("addon disabled.")
 
 
 # 起動時処理

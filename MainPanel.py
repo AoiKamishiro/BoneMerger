@@ -4,16 +4,14 @@ from .PanelBase import PanelBase
 from .SaveBoneSelectionInArmatureOperator import SaveBoneSelectionInArmatureOperator
 from .MergeBoneWeightToParentOperator import MergeBoneWeightToParentOperator
 
-bpy.types.Scene.show_target_bones = bpy.props.BoolProperty(name="対象ボーン", default=False)  # type: ignore
-
 
 class MainPanel(PanelBase):
     """
     マージを行うボーンを設定するパネル
     """
 
-    bl_idname: str = "bone_merger._PT_.main_panel"
-    bl_label: str = "Main Panel"
+    bl_idname: str = "BONE_MERGER_PT_MAIN_PANEL"
+    bl_label: str = "Main"
 
     def draw(self, context: bpy.types.Context) -> None:
         layout = self.layout
@@ -43,9 +41,9 @@ class MainPanel(PanelBase):
         # foldout の作成
         row = layout.row()
         row.alignment = 'LEFT'
-        row.prop(context.scene, "show_target_bones", icon="TRIA_DOWN" if context.scene.show_target_bones else "TRIA_RIGHT", emboss=False)  # type: ignore
+        row.prop(context.scene, prop_show_target_bones, icon=icon_tria_down if context.scene.get(prop_show_target_bones) else icon_tria_right, emboss=False)
 
-        if context.scene.show_target_bones:  # type: ignore
+        if context.scene.get(prop_show_target_bones):
             box = layout.box()
             for bone in target_bones:
                 box.label(text=bone)
