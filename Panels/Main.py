@@ -3,6 +3,7 @@ from ..common import *
 from ..Bases.Panel import PanelBase
 from ..Operators.MergeBoneWeightToParent import MergeBoneWeightToParentOperator
 from ..Operators.SaveBoneSelectionInArmature import SaveBoneSelectionInArmatureOperator
+from ..Operators.SelectTargetBone import SelectTargetBoneOperator
 
 
 class MainPanel(PanelBase):
@@ -47,3 +48,6 @@ class MainPanel(PanelBase):
             box = layout.box()
             for bone in target_bones:
                 box.label(text=bone)
+
+        # target_bones を選択するボタンを作成
+        layout.operator(SelectTargetBoneOperator.bl_idname, text=SelectTargetBoneOperator.bl_label)

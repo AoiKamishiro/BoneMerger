@@ -13,6 +13,7 @@ op_result_cancelled = {'CANCELLED'}
 op_result_finished = {'FINISHED'}
 icon_tria_down = 'TRIA_DOWN'
 icon_tria_right = 'TRIA_RIGHT'
+action_deselect = 'DESELECT'
 prop_show_target_bones = "bone_merger__show_target_bones"
 msg_not_armature = "アーマチュアが選択されていません。"
 # endregion

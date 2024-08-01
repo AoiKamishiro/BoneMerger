@@ -5,6 +5,7 @@ from .Panels.Option import OptionPanel
 from .Operators.MergeBoneWeightToParent import MergeBoneWeightToParentOperator
 from .Operators.SaveBoneSelectionInArmature import SaveBoneSelectionInArmatureOperator
 from .Operators.WeightAutoCleanup import WeightAutoCleanupOperator
+from .Operators.SelectTargetBone import SelectTargetBoneOperator
 
 # アドオンに関する情報
 bl_info = {
@@ -29,6 +30,7 @@ classes = [
     SaveBoneSelectionInArmatureOperator,
     MergeBoneWeightToParentOperator,
     WeightAutoCleanupOperator,
+    SelectTargetBoneOperator,
 ]
 
 
