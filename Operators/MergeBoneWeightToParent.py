@@ -56,6 +56,17 @@ class MergeBoneWeightToParentOperator(bpy.types.Operator):
             # obj をアクティブにする
             bpy.context.view_layer.objects.active = obj
 
+            # obj の非表示状態を取得し、表示状態に変更
+            obj_isHide: bool = obj.hide_get()
+            obj.hide_set(False)
+
+            # obj のシェイプキーを取得
+            mesh_object = cast_to_mesh(obj.data)
+
+            # obj のシェイプキーがある場合、0番目のシェイプキーをアクティブにする
+            if mesh_object.shape_keys is not None:
+                bpy.context.object.active_shape_key_index = 0
+
             for bone in bones:
 
                 # 頂点グループに bone が存在しない場合はスキップ
@@ -83,6 +94,7 @@ class MergeBoneWeightToParentOperator(bpy.types.Operator):
                 modifier.mix_set = 'OR'
                 modifier.default_weight_a = 0.0
                 modifier.default_weight_b = 0.0
+                modifier.normalize = False
 
                 # modifier をアクティブにする
                 bpy.ops.object.modifier_set_active(modifier=modifier.name)
@@ -97,6 +109,9 @@ class MergeBoneWeightToParentOperator(bpy.types.Operator):
             for bone in bones:
                 if bone.name in obj.vertex_groups:
                     obj.vertex_groups.remove(obj.vertex_groups[bone.name])
+
+            # obj の非表示状態を元に戻す
+            obj.hide_set(obj_isHide)
 
         # ボーンを削除
         bpy.context.view_layer.objects.active = arm
