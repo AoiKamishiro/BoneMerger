@@ -6,6 +6,7 @@ from .Operators.MergeBoneWeightToParent import MergeBoneWeightToParentOperator
 from .Operators.SaveBoneSelectionInArmature import SaveBoneSelectionInArmatureOperator
 from .Operators.WeightAutoCleanup import WeightAutoCleanupOperator
 from .Operators.SelectTargetBone import SelectTargetBoneOperator
+from .Operators.RemoveNonExistentBoneWeights import RemoveNonExistentBoneWeightsOperator
 
 # アドオンに関する情報
 bl_info = {
@@ -31,6 +32,7 @@ classes = [
     MergeBoneWeightToParentOperator,
     WeightAutoCleanupOperator,
     SelectTargetBoneOperator,
+    RemoveNonExistentBoneWeightsOperator,
 ]
 
 
