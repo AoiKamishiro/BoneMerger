@@ -11,7 +11,7 @@ from .Operators.SelectTargetBone import SelectTargetBoneOperator
 bl_info = {
     "name": "Bone Merger",
     "author": "神代アオイ (Aoi Kamishiro)",
-    "version": (1, 1, 3),
+    "version": (1, 2, 0),
     "blender": (3, 6, 0),
     "location": "View3D > Tools ",
     "description": "Merge bone weight to parent bone.",
