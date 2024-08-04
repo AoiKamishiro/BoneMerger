@@ -53,3 +53,7 @@ BoneMerger_[バージョン番号].zip となっているファイルをダウ�
 BoneMerger アドオンに関する質問や問題がある場合は、以下の連絡先までお願いします。
 
 [X](https://x.com/aoi3192)
+
+## 参考ドキュメント
+
+[VertexWeightMixModifier](https://upbge.org/docs/latest/api/bpy.types.VertexWeightMixModifier.html)
