@@ -58,6 +58,18 @@ def log(msg: str) -> None:
 
     print("[Bone Merger] "+msg)
 
+def report(operator: bpy.types.Operator, msg: str) -> None:
+    """レポートを出力"""
+
+    operator.report({'INFO'}, msg)
+    log(msg)
+
+def report_error(operator: bpy.types.Operator, msg: str) -> None:
+    """エラーレポートを出力"""
+
+    operator.report({'ERROR'}, msg)
+    log(msg)
+
 
 def get_armature_object(object: bpy.types.Object) -> bpy.types.Object | None:
     """

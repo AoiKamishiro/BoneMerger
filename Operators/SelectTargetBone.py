@@ -15,7 +15,7 @@ class SelectTargetBoneOperator(bpy.types.Operator):
 
         # context.active_object が None であれば中止
         if context.active_object is None:
-            log(msg_not_armature)
+            report_error(self, msg_not_armature)
             return op_result_cancelled
 
         # アーマチュアを取得
@@ -23,7 +23,7 @@ class SelectTargetBoneOperator(bpy.types.Operator):
 
         # 選択中のオブジェクトの型チェック
         if arm is None or arm.type != type_armature:
-            log("The selected object is not an armature.")
+            report_error(self, "The selected object is not an armature.")
             return op_result_cancelled
 
         # 現在のモードが ポーズモード か アーマチュア編集モード でなければ、アーマチュアを選択してアーマチュア編集モードに変更

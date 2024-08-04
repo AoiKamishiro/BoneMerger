@@ -18,7 +18,7 @@ class RemoveNonExistentBoneWeightsOperator(bpy.types.Operator):
 
         # context.active_object が None であれば中止
         if context.active_object is None:
-            log(msg_not_armature)
+            report_error(self, msg_not_armature)
             return op_result_cancelled
 
         # アーマチュアを取得
@@ -26,7 +26,7 @@ class RemoveNonExistentBoneWeightsOperator(bpy.types.Operator):
 
         # 選択中のオブジェクトの型チェック
         if arm is None or arm.type != type_armature:
-            log(msg_not_armature)
+            report_error(self, msg_not_armature)
             return op_result_cancelled
 
         # アーマチュアをアクティブにして、非表示状態を取得
@@ -45,7 +45,7 @@ class RemoveNonExistentBoneWeightsOperator(bpy.types.Operator):
         # 全てのメッシュオブジェクトに対して処理を行う
         for obj in mesh_objects:
 
-            log(f"Cleanup: {obj.name}")
+            report(self, f"Cleanup: {obj.name}")
             # obj をアクティブにする
             bpy.ops.object.select_all(action=action_deselect)
             bpy.context.view_layer.objects.active = obj

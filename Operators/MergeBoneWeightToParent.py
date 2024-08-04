@@ -18,7 +18,7 @@ class MergeBoneWeightToParentOperator(bpy.types.Operator):
 
         # context.active_object が None であれば中止
         if context.active_object is None:
-            log(msg_not_armature)
+            report_error(self, msg_not_armature)
             return op_result_cancelled
 
         # アーマチュアを取得
@@ -26,7 +26,7 @@ class MergeBoneWeightToParentOperator(bpy.types.Operator):
 
         # 選択中のオブジェクトの型チェック
         if arm is None or arm.type != type_armature:
-            log(msg_not_armature)
+            report_error(self, msg_not_armature)
             return op_result_cancelled
         
         # アーマチュアをアクティブにして、非表示状態を取得
@@ -86,7 +86,7 @@ class MergeBoneWeightToParentOperator(bpy.types.Operator):
                 if modifier is None:
                     continue
 
-                log(f"Add modifier to {obj.name}, a:{bone.parent.name} -> b:{bone.name}")
+                report(self, f"Add modifier to {obj.name}, a:{bone.parent.name} -> b:{bone.name}")
                 # modifier のプロパティを設定
                 modifier.vertex_group_a = bone.parent.name
                 modifier.vertex_group_b = bone.name
@@ -119,9 +119,9 @@ class MergeBoneWeightToParentOperator(bpy.types.Operator):
 
         editBones: list[bpy.types.EditBone] = [bone for bone in armature.edit_bones if bone.name in target_bones]
 
-        log(f"Remove bones: {editBones.__len__()}")
+        report(self, f"Remove bones: {editBones.__len__()}")
         for editBone in editBones:
-            log(f"Remove bone: {editBone.name}")
+            report(self, f"Remove bone: {editBone.name}")
             armature.edit_bones.remove(editBone)
 
         # オブジェクトモードに変更
