@@ -12,7 +12,7 @@ from .Operators.RemoveNonExistentBoneWeights import RemoveNonExistentBoneWeights
 bl_info = {
     "name": "Bone Merger",
     "author": "神代アオイ (Aoi Kamishiro)",
-    "version": (1, 2, 0),
+    "version": (1, 2, 1),
     "blender": (3, 6, 0),
     "location": "View3D > Tools ",
     "description": "Merge bone weight to parent bone.",
