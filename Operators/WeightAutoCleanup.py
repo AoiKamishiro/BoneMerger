@@ -59,7 +59,7 @@ class WeightAutoCleanupOperator(bpy.types.Operator):
             bpy.ops.object.vertex_group_normalize_all(group_select_mode='ALL')
 
             # Weight->Quantize
-            bpy.ops.object.vertex_group_quantize(group_select_mode='ALL', steps=128)
+            bpy.ops.object.vertex_group_quantize(group_select_mode='ALL', steps=1024)
 
             # Weight->Clean
             bpy.ops.object.vertex_group_clean(group_select_mode='ALL', limit=0.0001)
