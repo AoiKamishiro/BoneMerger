@@ -4,7 +4,7 @@ from ..common import *
 
 class MergeBoneWeightToParentOperator(bpy.types.Operator):
     """
-    ボーンのウェイトを親にマージするオペレーター
+    ボーンのウェイト (頂点グループとボーン) を親にマージするオペレーター
     """
 
     bl_idname: str = "bone_merger.merge_bone_weight_to_parent"
