@@ -11,14 +11,13 @@ BoneMerger アドオンは、Blenderにおいて自動ウェイト設定の作�
 ## ダウンロード
 
 Githubの[リリース](https://github.com/AoiKamishiro/BoneMerger/releases)から、最新のZipをダウンロードできます。  
-BoneMerger_[バージョン番号].zip となっているファイルをダウンロードしてください。  
 
 ## インストール方法
 
 1. Blenderを起動します。
 2. メニューバーから「Edit」を選択し、「Preferences」をクリックします。
 3. 「Add-ons」タブを選択します。
-4. 「Install」ボタンをクリックし、ダウンロードした BoneMerger_[バージョン番号].zip ファイルを選択します。
+4. 「Install」ボタンをクリックし、ダウンロードした BoneMerger.zip ファイルを選択します。
 5. BoneMerger アドオンを有効にします。
 
 ## 使い方
